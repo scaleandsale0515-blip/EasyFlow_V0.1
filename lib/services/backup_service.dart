@@ -39,6 +39,9 @@ class BackupService {
     }
 
     final zipData = ZipEncoder().encode(archive);
+        if (zipData == null) {
+      throw Exception('Sorry, Failed to create backup: zip encoding returned null');
+    }
     final backupDir = Directory('${docsDir.path}/backups');
     if (!await backupDir.exists()) await backupDir.create(recursive: true);
     final timestamp = DateTime.now().millisecondsSinceEpoch;
