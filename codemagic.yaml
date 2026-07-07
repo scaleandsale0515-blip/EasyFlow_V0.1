@@ -1,0 +1,13 @@
+workflows:
+  easyflow-debug:
+    name: EasyFlow Debug APK
+    max_build_duration: 30
+    environment:
+      flutter: stable
+    scripts:
+      - name: Get Flutter packages
+        script: flutter pub get
+      - name: Build debug APK
+        script: flutter build apk --debug
+    artifacts:
+      - build/app/outputs/flutter-apk/*.apk
